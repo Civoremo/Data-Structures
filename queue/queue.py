@@ -1,4 +1,4 @@
-from linked_list.linked_list import LinkedList
+from linked_list import LinkedList
 
 
 class Queue:
@@ -9,10 +9,17 @@ class Queue:
         self.storage = LinkedList()
 
     def enqueue(self, item):
-        pass
+        # pass
+        self.storage.add_to_tail(item)
+        self.size += 1
 
     def dequeue(self):
-        pass
+        # pass
+        if self.size > 0:
+            old_head_value = self.storage.remove_from_head()
+            self.size -= 1
+            return old_head_value
 
     def len(self):
-        pass
+        # pass
+        return self.size
