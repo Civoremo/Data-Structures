@@ -1,8 +1,6 @@
 import unittest
-# from doubly_linked_list import ListNode
-# from doubly_linked_list import DoublyLinkedList
-from dbl import ListNode
-from dbl import DoublyLinkedList
+from doubly_linked_list import ListNode
+from doubly_linked_list import DoublyLinkedList
 
 class DoublyLinkedListTests(unittest.TestCase):
   def setUp(self):
@@ -96,11 +94,14 @@ class DoublyLinkedListTests(unittest.TestCase):
     self.assertEqual(self.dll.head.value, 40)
 
     self.dll.move_to_end(self.dll.head)
+    print(f'head-test: {self.dll.head.value} tail-test: {self.dll.tail.value}')
     self.assertEqual(self.dll.tail.value, 40)
     self.assertEqual(self.dll.tail.prev.value, 1)
     self.assertEqual(len(self.dll), 2)
 
     self.dll.add_to_tail(4)
+    print(f'head-test2: {self.dll.head.value} tail-test2: {self.dll.tail.value}')
+    print(f'head-test3: {self.dll.head.next.value} tail-test3: {self.dll.tail.value}')
     self.dll.move_to_end(self.dll.head.next)
     self.assertEqual(self.dll.tail.value, 40)
     self.assertEqual(self.dll.tail.prev.value, 4)

@@ -90,22 +90,33 @@ class DoublyLinkedList:
     # pass
     new_tail = ListNode(value)
     if self.head == self.tail and self.tail is not None:
+        # print(f'here1')
         self.tail = new_tail
         self.tail.prev = self.head
         self.head.next = self.tail
         self.length += 1
     elif self.tail is None:
+        # print(f'here2')
         self.head = new_tail
         self.tail = new_tail
         self.head.next = self.tail
         self.tail.prev = self.head
         self.length += 1
     else:
+        print(f'here3')
         old_tail = self.tail
+        print(f'current tail: {old_tail.value}')
+        old_prev = self.tail.prev
+        print(f'old_prev: {old_prev.value}')
         self.tail = new_tail
         old_tail.next = self.tail
+        # old_tail.prev = old_prev
         self.tail.prev = old_tail
         self.length += 1
+        print(f'previous: {self.tail.prev.value}')
+        print(f'old_tail: {old_tail.value}')
+        print(f'head: {self.head.value}')
+        print(f'head_next: {self.head.next.value}')
 
   def remove_from_tail(self):
     # pass
@@ -144,14 +155,17 @@ class DoublyLinkedList:
 
   def move_to_end(self, node):
     # pass
-    print(f'head1: {self.head.value} tail1: {self.tail.value}')
+    # print(f'head1: {self.head.value} tail1: {self.tail.value}')
     if self.tail is None:
         return None
-    elif self.head == self.tail:
-        print(f'help')
-        return node
+    elif self.head == self.tail and self.head is not None:
+        print(f'something')
+        self.tail = node
+        self.head.next = self.tail
+        self.tail.prev = self.head
     elif node == self.head:
-        print(f'head2: {self.head.value} tail2: {self.tail.value}')
+        # print(f'head2: {self.head.value} tail2: {self.tail.value}')
+        print(f'NODE1: {node.value}')
         new_head = self.head.next
         old_tail = self.tail
         self.tail = self.head
@@ -159,8 +173,9 @@ class DoublyLinkedList:
         self.tail.prev = old_tail
         self.head = new_head
         self.head.prev = None
-    else:
-        print(f'head3: {self.head.value} tail3: {self.tail.value}')
+    elif node == self.tail:
+        # print(f'head3: {self.head.value} tail3: {self.tail.value}')
+        print(f'NODE2: {node.value}')
         new_head = self.head.next
         old_tail = self.tail
         self.tail = self.head
@@ -168,6 +183,21 @@ class DoublyLinkedList:
         self.tail.prev = old_tail
         old_tail.next = self.tail
         self.head = new_head
+    elif node == self.head.next:
+        print(f'NODE3: ')
+        # next_node = self.head.next
+        # print(f'NEXT: {next_node.value}')
+        # old_tail = self.tail
+        # self.tail = self.head.next
+        # print(f'TAIL: {self.tail.value}')
+        # self.tail.next = None
+        # self.tail.prev = old_tail
+        # old_tail.next = self.tail
+        # self.head.next = old_tail
+        # old_tail.prev = self.head
+        # print(f'head4: {self.head.value} tail4: {self.tail.value} tailPrev: {self.tail.prev.value}')
+    else:
+        return None
 
   def delete(self, node):
     # pass
