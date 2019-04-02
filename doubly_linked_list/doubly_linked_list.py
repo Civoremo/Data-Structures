@@ -46,25 +46,18 @@ class DoublyLinkedList:
   def add_to_head(self, value):
     # pass
     new_node = ListNode(value)
-    # if self.head == self.tail:
-    #     self.tail.prev = new_node
-    #     self.head = new_node
-    #     self.length += 1
-    #     return self.head
     if self.head is not None:
         old_head = self.head
         self.head = new_node
         old_head.prev = self.head
         self.head.next = old_head
         self.length += 1
-        # return self.head
     elif self.head is None:
         self.head = new_node
         self.tail = self.head
         self.head.next = self.tail
         self.tail.prev = self.head
         self.length += 1
-        # return self.head
     else:
         return None
 
@@ -90,33 +83,25 @@ class DoublyLinkedList:
     # pass
     new_tail = ListNode(value)
     if self.head == self.tail and self.tail is not None:
-        # print(f'here1')
         self.tail = new_tail
         self.tail.prev = self.head
         self.head.next = self.tail
         self.length += 1
     elif self.tail is None:
-        # print(f'here2')
         self.head = new_tail
         self.tail = new_tail
         self.head.next = self.tail
         self.tail.prev = self.head
         self.length += 1
     else:
-        print(f'here3')
         old_tail = self.tail
-        print(f'current tail: {old_tail.value}')
         old_prev = self.tail.prev
-        print(f'old_prev: {old_prev.value}')
         self.tail = new_tail
         old_tail.next = self.tail
-        # old_tail.prev = old_prev
+        old_tail.prev = old_prev
         self.tail.prev = old_tail
         self.length += 1
-        print(f'previous: {self.tail.prev.value}')
-        print(f'old_tail: {old_tail.value}')
-        print(f'head: {self.head.value}')
-        print(f'head_next: {self.head.next.value}')
+        self.head.next = old_tail
 
   def remove_from_tail(self):
     # pass
@@ -155,17 +140,13 @@ class DoublyLinkedList:
 
   def move_to_end(self, node):
     # pass
-    # print(f'head1: {self.head.value} tail1: {self.tail.value}')
     if self.tail is None:
         return None
     elif self.head == self.tail and self.head is not None:
-        print(f'something')
         self.tail = node
         self.head.next = self.tail
         self.tail.prev = self.head
     elif node == self.head:
-        # print(f'head2: {self.head.value} tail2: {self.tail.value}')
-        print(f'NODE1: {node.value}')
         new_head = self.head.next
         old_tail = self.tail
         self.tail = self.head
@@ -174,8 +155,6 @@ class DoublyLinkedList:
         self.head = new_head
         self.head.prev = None
     elif node == self.tail:
-        # print(f'head3: {self.head.value} tail3: {self.tail.value}')
-        print(f'NODE2: {node.value}')
         new_head = self.head.next
         old_tail = self.tail
         self.tail = self.head
@@ -183,21 +162,20 @@ class DoublyLinkedList:
         self.tail.prev = old_tail
         old_tail.next = self.tail
         self.head = new_head
-    elif node == self.head.next:
-        print(f'NODE3: ')
-        # next_node = self.head.next
-        # print(f'NEXT: {next_node.value}')
-        # old_tail = self.tail
-        # self.tail = self.head.next
-        # print(f'TAIL: {self.tail.value}')
-        # self.tail.next = None
-        # self.tail.prev = old_tail
-        # old_tail.next = self.tail
-        # self.head.next = old_tail
-        # old_tail.prev = self.head
-        # print(f'head4: {self.head.value} tail4: {self.tail.value} tailPrev: {self.tail.prev.value}')
     else:
-        return None
+        current = self.head
+        while current is not node.next:
+          if current == node:
+            prev_node = current.prev
+            next_node = current.next
+            old_tail = self.tail
+            self.tail = current
+            self.tail.next = None
+            self.tail.prev = old_tail
+            old_tail.next = self.tail
+            prev_node.next = next_node
+            next_node.prev = prev_node
+          current = current.next
 
   def delete(self, node):
     # pass
