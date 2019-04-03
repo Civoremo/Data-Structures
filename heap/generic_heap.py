@@ -16,7 +16,7 @@ class Heap:
     pass
 
   def _bubble_up(self, index):
-    pass
+    pass    
 
   def _sift_down(self, index):
     pass
