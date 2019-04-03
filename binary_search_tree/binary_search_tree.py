@@ -9,7 +9,7 @@ class BinarySearchTree:
     if self.value is None:
       self = BinarySearchTree(value)
     else:
-      if self.value < value:
+      if self.value <= value:
         if self.right is None:
           self.right = BinarySearchTree(value)
         else:
@@ -21,10 +21,32 @@ class BinarySearchTree:
           return self.left.insert(value)
 
   def contains(self, target):
-    pass
+    # pass
+    print(f'self: {self.value} target: {target}')
+    if self.value is None:
+      return False
+    else:
+      if self.value == target:
+        print(f'FOUND TARGET')
+        return True
+      else:
+        if self.value > target:
+          if self.left is not None:
+            self.left.contains(target)
+        else:
+          if self.right is not None:
+            self.right.contains(target)
 
   def get_max(self):
-    pass
+    # pass
+    if self.value is None:
+      return None
+    max = self.value
+    right = self.right
+    while right is not None:
+      max = right.value
+      right = right.right
+    return max
 
   def for_each(self, cb):
     pass
