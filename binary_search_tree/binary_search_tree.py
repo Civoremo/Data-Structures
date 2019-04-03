@@ -22,20 +22,17 @@ class BinarySearchTree:
 
   def contains(self, target):
     # pass
-    print(f'self: {self.value} target: {target}')
     if self.value is None:
       return False
     else:
       if self.value == target:
-        print(f'FOUND TARGET')
         return True
+      elif self.value > target:
+        if self.left is not None:
+          return self.left.contains(target)
       else:
-        if self.value > target:
-          if self.left is not None:
-            self.left.contains(target)
-        else:
-          if self.right is not None:
-            self.right.contains(target)
+        if self.right is not None:
+          return self.right.contains(target)
 
   def get_max(self):
     # pass
