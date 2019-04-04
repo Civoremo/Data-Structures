@@ -4,7 +4,7 @@ from generic_heap import Heap
 
 class HeapTests(unittest.TestCase):
   def setUp(self):
-    self.heap = Heap(lambda x, y: x < y)
+    self.heap = Heap()
 
   def test_default_heap_insert_works(self):
     self.heap.insert(6)
@@ -66,18 +66,18 @@ class HeapTests(unittest.TestCase):
 
   #   self.assertEqual(descending_order, [10, 8, 7, 6, 5, 5, 2, 1])
 
-  # def test_custom_heap_insert_works(self):
-  #   self.heap = Heap(lambda x, y: x < y)
+  def test_custom_heap_insert_works(self):
+    self.heap = Heap(lambda x, y: x < y)
 
-  #   self.heap.insert(6)
-  #   self.heap.insert(8)
-  #   self.heap.insert(10)
-  #   self.heap.insert(9)
-  #   self.heap.insert(1)
-  #   self.heap.insert(9)
-  #   self.heap.insert(9)
-  #   self.heap.insert(5) 
-  #   self.assertEqual(self.heap.storage, [1, 5, 9, 6, 8, 10, 9, 9])
+    self.heap.insert(6)
+    self.heap.insert(8)
+    self.heap.insert(10)
+    self.heap.insert(9)
+    self.heap.insert(1)
+    self.heap.insert(9)
+    self.heap.insert(9)
+    self.heap.insert(5) 
+    self.assertEqual(self.heap.storage, [1, 5, 9, 6, 8, 10, 9, 9])
 
   # def test_custom_get_priority_works(self):
   #   self.heap = Heap(lambda x, y: x < y)
